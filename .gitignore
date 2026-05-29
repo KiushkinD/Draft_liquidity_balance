@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/exog_cache.parquet
+data/key_rate.parquet
+data/ruonia.parquet
+data/moex.parquet
+data/usdrub.parquet
+.pytest_cache/
+.DS_Store
+reports/*.png
+!reports/.gitkeep
+docs/
