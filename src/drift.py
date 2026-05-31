@@ -2,7 +2,11 @@ from collections import deque
 from dataclasses import dataclass, field
 
 import numpy as np
-from river.drift import ADWIN
+
+try:
+    from river.drift import ADWIN
+except ImportError:  # river опционален; ADWINDetector тогда работает вхолостую
+    ADWIN = None
 
 
 @dataclass
