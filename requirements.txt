@@ -14,3 +14,5 @@ seaborn>=0.13
 openpyxl>=3.1
 jupyter>=1.0
 pyarrow>=14.0
+tqdm>=4.65
+phik>=0.12
