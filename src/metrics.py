@@ -8,28 +8,7 @@ def pnl_loss(y_true, y_pred, key_rate=None):
     """
     Бизнес-метрика, отражающая финансовые потери от ошибки прогноза сальдо.
 
-    Параметры
-    ----------
-    y_true : array-like
-        Фактические значения баланса.
-    y_pred : array-like
-        Прогнозные значения баланса.
-    key_rate : float or array-like, optional
-        Ключевая ставка (годовых). В текущей реализации не используется,
-        оставлена для совместимости с сигнатурой из ТЗ.
-
-    Возвращает
-    -------
-    float
-        Средние дневные потери (в денежных единицах, нормированные на 1 рубль баланса).
-
-    Формула потерь
-    --------------
-    - Перепрогноз (ŷ > y):   (ŷ - y) * 0.5% / 365
-    - Недопрогноз (ŷ < y):   (y - ŷ) * 1.4% / 365
-    - Иначе: 0
-
-    Потери асимметричны: недопрогноз в 2,8 раза дороже перепрогноза.
+   
     """
     y_true = np.asarray(y_true)
     y_pred = np.asarray(y_pred)
@@ -54,19 +33,7 @@ def mae(y_true, y_pred):
 
 
 def make_scorer(key_rate=None):
-    """
-    Создаёт scorer на основе pnl_loss для использования в sklearn / Optuna.
 
-    Параметры
-    ----------
-    key_rate : float, optional
-        Значение ключевой ставки (фиксированное). В текущей реализации игнорируется.
-
-    Возвращает
-    -------
-    callable
-        Scorer с сигнатурой scorer(estimator, X, y) -> float.
-    """
     return sklearn_make_scorer(
         partial(pnl_loss, key_rate=key_rate),
         greater_is_better=False

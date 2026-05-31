@@ -55,9 +55,7 @@ class SeasonalNaive(BaseEstimator, RegressorMixin):
             return np.full(n, self.y_[-5])
 
 
-# ========================
-# 2. SARIMAX wrapper (авторегрессия + экзогены)
-# ========================
+
 
 class SARIMAXWrapper(BaseEstimator, RegressorMixin):
     """
@@ -155,9 +153,7 @@ def make_lgb_pipeline(n_estimators=100, learning_rate=0.1, num_leaves=31,
     ])
 
 
-# ========================
-# 4. Словарь всех моделей с сетками гиперпараметров
-# ========================
+
 
 def get_all_models():
     """
